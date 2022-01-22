@@ -6,7 +6,10 @@
 % nn : [na nb nk] structure of the model to be estimated
 %  u : size(m, 1) input time series
 %  y : size(m, 1) output time series
-
+%
+% The reason for the '1' in the function name is to distinguish
+% this function from the MATLAB equivalent.
+%
 
 function [p, covp, Vres] = idarx1(nn,u,y)
 

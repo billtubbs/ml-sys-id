@@ -1,25 +1,35 @@
-% Function to estimate the parameters of a dynamic AR model
+% Function to estimate the parameters of a dynamic ARMAX model
 % from time series data.  Also computes the covariance matrix
 % (covp) and the sum of the squared residuals (Vres).
 %
 % Arguments:
-% nn : [na] structure of the model to be estimated
+% nn : [na nb nk] structure of the model to be estimated
+%  u : size(m, 1) input time series
 %  y : size(m, 1) output time series
+%
+% The reason for the '1' in the function name is to distinguish
+% this function from the MATLAB equivalent.
+%
 
+function [p, covp, Vres] = idarmax1(nn,u,y)
 
-function [p, covp, Vres] = idar1(nn, y)
-
-    % AR model structure
+    % ARMAX model structure
     na = nn(1); assert(na > 0)
-    m = length(y);
+    nb = nn(2); assert(nb > 0)
+    nc = nn(3); assert(nc > 0)
+    nk = nn(4); assert(nk >= 0)
+    m = length(u);
+    assert(length(y) == m)
 
     % Construct data matrices
-    Y = hankel(y(1:na), y(na:end)).';
-    Y = flip(Y(1:m-na+1,:), 2);
+    U = hankel(u(1:nb),u(nb:end)).';
+    U = flip(U(1:m-nb+1,:),2);
+    Y = hankel(y(1:na),y(na:end)).';
+    Y = flip(Y(1:m-na+1,:),2);
     
     % Phi, Y matrices
-    n = m - na;
-    phi = -Y(end-n:end-1, :);
+    n = m - max(na, nb + nk - 1);
+    phi = [-Y(end-n:end-1,:) U(end-n-nk+1:end-nk,:)];
     Y = y(end-n+1:end);
     
     % Estimate parameters using ordinary least squares

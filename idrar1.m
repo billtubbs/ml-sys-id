@@ -15,6 +15,11 @@ function [theta, P] = idrar1(nn, yk, theta, P, gamma, met, l)
     %     l : paramètre utilisé pour la gestion du facteur d'oubli
     %         si met = 2, l = lambda (facteur d'oubli)
     %         si met = 3, l = alpha (paramètre définissant le seuil de la trace)
+    %
+    % Notes:
+    %  - The reason for the '1' in the function name is to distinguish
+    %     this function from the MATLAB equivalent.
+    %
 
     % ARX model structure
     na = nn(1); assert(length(yk) == (na+1))
@@ -38,7 +43,7 @@ function [theta, P] = idrar1(nn, yk, theta, P, gamma, met, l)
         lambda = trace(A) / (p*alpha);
         P = A / lambda;
     else
-        error('met: Value error')
+        error('ValueError: met')
     end
 
     % Correction gain

@@ -15,7 +15,10 @@
 %  y : size(m, 1) output time series
 %  F : size(1, na+nb) constraint equation coefficients
 %  G : size(na+nb, 1) constraint equation constants
-
+%
+% The reason for the '1' in the function name is to distinguish
+% this function from the MATLAB equivalent.
+%
 
 function p = idarxct1(nn,u,y,F,G)
 
