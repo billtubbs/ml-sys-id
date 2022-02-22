@@ -1,9 +1,27 @@
 # ml-sys-id
-MATLAB functions to identify autoregressive (AR) linear models from time series data.
+MATLAB functions to identify linear models from time series data.
 
 Note that most of these capabilities are included in the MATLAB system identification module (e.g. using the [`idpoly`](https://www.mathworks.com/help/ident/ref/idpoly.html) function)
 
 However, I developed these as part of a control engineering graduate course and provide them for educational purposes and perhaps for simple use cases where you may want to implement them from scratch.
+
+## Contents
+
+Functions for system identification
+- [disp_ols_dims_arx.m](disp_ols_dims_arx.m) - display the structure of an ordinary least squares (OLS) problem
+- [idrar1.m](idrar1.m) - online estimatation of the parameters of a dynamic AR model
+- [idar1.m](idar1.m) - estimate the parameters of a dynamic AR model from time series data
+- [idarmax.m](idarmax.m) - estimate the parameters of a dynamic ARMAX model from time series data
+- [idarx1.m](idarx1.m) - estimate the parameters of a dynamic ARX model from time series data
+- [idarxct1.m](idarxct1.m) - estimate the parameters of a dynamic ARX model using constrained ordinary least squares
+- [solve_ols.m](solve_ols.m) - general equation to solve OLS problem
+- [solve_ols_properties.m](solve_ols_properties.m) - solve OLS problem and also returns sum of the squared residuals, white noise variance and covariance matrix.
+
+Functions to run identification data generation experiments
+- [gen_seqs_rbs.m](gen_seqs_rbs.m) - produces a random binary sequence of steps (steps at regular intervals)
+- [gen_seqs_ros.m](gen_seqs_ros.m) - produces a randomly-occurring binary sequence of steps
+- [idinput_from_seq.m](idinput_from_seq.m) - generate an excitation signal from a given step sequence 
+
 
 ## Example 1 - Identification of an ARX model
 
