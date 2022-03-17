@@ -1,7 +1,7 @@
 # ml-sys-id
 MATLAB functions to identify linear models from time series data.
 
-Note that most of these capabilities are included in the MATLAB system identification module (e.g. using the [`polyest`](https://www.mathworks.com/help/ident/ref/polyest.html function)
+Note that most of these capabilities are included in the MATLAB system identification module (e.g. using the [`polyest`](https://www.mathworks.com/help/ident/ref/polyest.html) function)
 
 However, I developed these as part of a control engineering graduate course and provide them for educational purposes and perhaps for simple use cases where you may want to implement them from scratch.
 
